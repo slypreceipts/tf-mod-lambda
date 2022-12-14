@@ -1,2 +1,2 @@
-# tf-modules
-Slyp Terraform Modules
+# tf-mod-lambda
+The terraform module for lambda
