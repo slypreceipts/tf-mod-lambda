@@ -28,7 +28,6 @@ jobs:
   verify-version:
     name: Verify version does not exist
     runs-on: ubuntu-22.04
-    container: ghcr.io/slypreceipts/ci-python:3.9
     steps:
       - uses: actions/checkout@v3
         with:
@@ -44,8 +43,7 @@ jobs:
     name: Create Git Tag
     runs-on: ubuntu-22.04
     needs: [verify-version, tf-scan]
-    if: startsWith(github.ref_name, 'release/')
-    container: ghcr.io/slypreceipts/ci-python:3.9
+    if: startsWith(github.ref_name, 'develop')
     steps:
       - uses: actions/checkout@v3
         with:
