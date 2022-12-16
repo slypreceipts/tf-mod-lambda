@@ -11,12 +11,14 @@ on:
 concurrency: ${{ github.head_ref ||  github.ref }}
 
 jobs:
-  tf-scan:
-    name: Scan Terraform
+  tf-test:
+    name: Test Terraform
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+      - run: make tf.init
       - run: make tf.lint
+      - run: make tf.plan.create
 
   verify-version:
     name: Verify version does not exist

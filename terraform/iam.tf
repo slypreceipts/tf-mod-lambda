@@ -3,8 +3,6 @@ resource "aws_iam_role" "lambda" {
   name = "${var.function_name}${var.suffix}"
 
   assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
-
-  tags = local.default_tags
 }
 
 data "aws_iam_policy_document" "lambda_assume" {
