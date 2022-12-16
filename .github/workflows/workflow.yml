@@ -11,11 +11,12 @@ on:
 concurrency: ${{ github.head_ref ||  github.ref }}
 
 jobs:
-  tf-scan:
-    name: Scan Terraform
+  tf-test:
+    name: Test Terraform
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+      - run: make tf.init
       - run: make tf.lint
 
   verify-version:
@@ -35,7 +36,7 @@ jobs:
   create-tag:
     name: Create Git Tag
     runs-on: ubuntu-22.04
-    needs: [verify-version, tf-scan]
+    needs: [verify-version, tf-test]
     if: startsWith(github.ref_name, 'develop')
     steps:
       - uses: actions/checkout@v3

@@ -9,9 +9,9 @@ variable "handler" {
   type = string
 }
 
-variable "tags" {
-  description = "Map of tags to apply"
-  type = map
+variable "runtime" {
+  description = "The lambda function runtime"
+  type =  string
 }
 
 variable "bucket_lambda_code" {
