@@ -1,3 +1,7 @@
+locals {
+  environment_map = var.environment_variables == null ? [] : [var.environment_variables]
+}
+
 resource "aws_lambda_function" "lambda" {
   # checkov:skip=CKV_AWS_50:X-ray tracing is enabled for Lambda
   # checkov:skip=CKV_AWS_117:Ensure that AWS Lambda function is configured inside a VPC
@@ -15,8 +19,11 @@ resource "aws_lambda_function" "lambda" {
 
   runtime = var.runtime
 
-  environment {
-    variables = var.environment_variables
+  dynamic "environment" {
+    for_each = local.environment_map
+    content {
+      variables = environment.value
+    }
   }
 
   depends_on = [
