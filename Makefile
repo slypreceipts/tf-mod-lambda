@@ -15,7 +15,7 @@ tf.lint:
 
 tf.init:
 	cd $(TERRAFORM_FOLDER) && \
-		terraform init
+		terraform init -upgrade
 
 tf.plan.create:
 	cd $(TERRAFORM_FOLDER) && \
