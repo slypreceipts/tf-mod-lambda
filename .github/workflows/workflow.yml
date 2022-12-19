@@ -27,6 +27,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: |
+          cat VERSION
           VERSION=$(cat VERSION)
           if [ $(git tag -l "$VERSION") ]; then
               echo "Version already exist"
