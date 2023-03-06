@@ -17,7 +17,9 @@ resource "aws_lambda_function" "lambda" {
   s3_key            = data.aws_s3_object.lambda_code.key
   s3_object_version = data.aws_s3_object.lambda_code.version_id
 
-  runtime = var.runtime
+  runtime     = var.runtime
+  timeout     = var.timeout
+  memory_size = var.memory_size
 
   dynamic "environment" {
     for_each = local.environment_map
