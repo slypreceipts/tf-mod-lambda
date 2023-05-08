@@ -31,6 +31,12 @@ variable "environment_variables" {
   default     = null
 }
 
+variable "log_retention" {
+  description = "Number of days to retain logs"
+  type        = number
+  default     = 30
+}
+
 variable "alias" {
   description = "The alias of the lambda function"
   type        = string
